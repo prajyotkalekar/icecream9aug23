@@ -1,0 +1,79 @@
+ <html>
+	<head>
+		<title> Icecream & Toppings App </title>
+
+		<style>
+			* { font-size:40px; }
+			body { background-image:url("im1.jpg"); }
+		</style>
+
+		<script>
+			function show()
+			{
+				event.preventDefault();
+				let flavour = document.getElementById("flavour");
+				let or = document.getElementById("or");
+				let tf = document.getElementById("tf");
+				let cc = document.getElementById("cc");
+				let df = document.getElementById("df");
+				let cs = document.getElementById("cs");
+				let ans = document.getElementById("ans");
+
+				if (flavour.value == "")
+				{
+					alert("Flavour cannot be Empty");
+					ans.innerHTML = "";
+					flavour.focus();
+					return;
+				}
+				else if (flavour.value.trim() == "")
+				{
+					alert("Flavour cannot be only spaces");
+					flavour.value = "";
+					ans.innerHTML = "";
+					flavour.focus();
+					return;
+				}
+				else if (! flavour.value.match(/^[A-Za-z ]+$/))
+				{
+					alert("Flavour should only contain Alphabets");
+					flavour.value = "";
+					ans.innerHTML = "";
+					flavour.focus();
+					return;
+				}
+
+				let topping = "";
+				if (or.checked)		topping += "Oreo";
+				if (tf.checked)		topping += "Tuti Fruti";
+				if (cc.checked)		topping += "Choco Chips";
+				if (df.checked)		topping += "Dry Fruits";
+				if (cs.checked)		topping += "Chocolate Sauce";
+
+				let msg = "Flavour: " + flavour.value + " Toppings: " + topping;
+				ans.innerHTML = msg;
+			}
+		</script>
+	</head>
+
+	<body>
+		<center>
+			<h1> Icecream Parlour </h1>
+			<form onsubmit = "show()">
+			<input type = "text" placeholder = "Enter Icecream Flavour" id = "flavour" />
+			<br><br>
+
+			<input type = "checkbox" id = "or" /> Oreo
+			<input type = "checkbox" id = "tf" /> Tuti Fruti
+			<input type = "checkbox" id = "cc" /> Choco Chips
+			<input type = "checkbox" id = "df" /> Dry Fruits
+			<input type = "checkbox" id = "cs" /> Chocolate Sauce
+			<br><br>
+
+			<input type = "submit" value = "Place Order" />
+			</form>
+
+			<h2 id = "ans"> </h2>
+		</center>
+	</body>
+</html>
